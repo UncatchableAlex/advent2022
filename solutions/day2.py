@@ -1,8 +1,8 @@
 f = open("../inputs/day2.txt").read().split("\n")
 games = [[ord(a) - ord('A'), ord(b) - ord('X')] for [a, b] in (ln.split(" ") for ln in f)]
 def getScore1(game):
-    gamesum = game[0] - game[1]
-    bonus = 3 if gamesum == 0 else (6 if (gamesum == -1 or gamesum == 2) else 0)
+    game_sum = game[0] - game[1]
+    bonus = 3 if game_sum == 0 else (6 if (game_sum == -1 or game_sum == 2) else 0)
     return bonus + game[1] + 1
 
 
