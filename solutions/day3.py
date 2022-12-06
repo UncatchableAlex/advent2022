@@ -1,9 +1,9 @@
-f = open("../inputs/day3.txt").read().split("\n")
+f = open("../inputs/day3.txt").read().splitlines()
 
 # part 1
 compartment_overlap = [set(sack[:(len(sack) >> 1)]) & set(sack[(len(sack) >> 1):]) for sack in f]
-rawOverlap_vals = [ord(list(overlap)[0]) for overlap in compartment_overlap]
-part1 = sum([(val - 38 if val < 96 else val - 96) for val in rawOverlap_vals])
+raw_overlap_vals = [ord(list(overlap)[0]) for overlap in compartment_overlap]
+part1 = sum([(val - 38 if val < 96 else val - 96) for val in raw_overlap_vals])
 print(part1)
 
 # part 2:

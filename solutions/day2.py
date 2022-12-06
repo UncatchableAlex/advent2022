@@ -1,4 +1,4 @@
-f = open("../inputs/day2.txt").read().split("\n")
+f = open("../inputs/day2.txt").read().splitlines()
 games = [[ord(a) - ord('A'), ord(b) - ord('X')] for [a, b] in (ln.split(" ") for ln in f)]
 def getScore1(game):
     game_sum = game[0] - game[1]
