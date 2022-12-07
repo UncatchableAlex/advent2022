@@ -1,16 +1,15 @@
 import re
 
-f = [n for n in open("../inputs/day5.txt").read().splitlines()]
+# delete brackets, spaces. replace empty spots with Xs
+def parse_box_row(box):
+    temp = re.sub("( ){4}", "X", box)
+    return re.sub("[\[\] ]", "", temp).ljust(num_boxes, 'X')
+
+
+f = open("../inputs/day5.txt").read().splitlines()
 # find the bottom layer of boxes
 bottom_layer = f.index("") - 1
 num_boxes = int(f[bottom_layer].split("   ")[-1])
-
-# Make
-def parse_box_row(box):
-    temp = re.sub("(\] \[)|\[|\]", "", box)
-    temp = re.sub("( ){4}", "X", temp)
-    return re.sub(" ", "", temp).ljust(num_boxes, 'X')
-
 
 parsed_box_rows = [parse_box_row(row) for row in f[:bottom_layer]]
 # transpose our array of boxes and remove space holders:
