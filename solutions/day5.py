@@ -1,5 +1,6 @@
 import re
 
+
 # delete brackets, spaces. replace empty spots with Xs
 def parse_box_row(box):
     temp = re.sub("( ){4}", "X", box)
@@ -24,7 +25,7 @@ for (q, orig, dest) in moves:
 
 print("".join([stack[0] for stack in b]))
 
-#part 2
+# part 2
 b = [box.copy() for box in boxes]
 for (q, orig, dest) in moves:
     b[dest - 1] = list(b[orig - 1][:q]) + b[dest - 1]
