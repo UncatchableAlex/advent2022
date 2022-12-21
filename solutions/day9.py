@@ -11,7 +11,7 @@ def step_knots(direction, knots):
     knots[0] = move_knot[direction](knots[0])
     for i in range(0, len(knots) - 1):
         head, tail = knots[i], knots[i + 1]  # do a quick rename to enhance readability
-        if abs(head[0] - tail[0]) + abs(head[1] - tail[1]) == 4:
+        if abs(head[0] - tail[0]) + abs(head[1] - tail[1]) == 4:  # edge case in part 2
             tail = (tail[0] + 1 if head[0] > tail[0] else tail[0] - 1,
                     tail[1] + 1 if head[1] > tail[1] else tail[1] - 1)
         if head[0] - tail[0] > 1:
