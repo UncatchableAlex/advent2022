@@ -46,7 +46,7 @@ def solve_variable_monkey(equals_monkey, variable_monkey, solved_monkeys, unsolv
     }
     # The call of each monkey between the equals_monkey and the variable_monkey will be dependent on one sub_monkey
     # whose call is invariate (not determined by anything that we do) and another monkey whose call we
-    # do control (with our choice of call for the variable_monkey). All monkey's whose call we do control will exist
+    # do control (with our choice of call for the variable_monkey). All monkeys whose call we do control will exist
     # in the path between the equals_monkey and the variable_monkey. We can find the call of the variable_monkey by
     # performing algebra to calculate the needed call of each sub_monkey whose call we do control (along the path
     # between the equals_monkey and the variable monkey).
