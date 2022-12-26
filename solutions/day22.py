@@ -116,7 +116,6 @@ def follow_path_cube(board, path, translate):
         facing = (facing + (1 if instr[0] == 'R' else -1)) % 4
         steps = int(instr[1:])
         for _ in range(steps):
-            prev = coord
             coord, facing = translate(coord, facing) # move forwards
             if board[coord.y][coord.x] == '#': # if we're on top of a wall
                 coord, facing = translate(coord, (facing + 2) % 4) # move backwards
