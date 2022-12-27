@@ -9,6 +9,7 @@ def get_neighbors(elf):
 
 
 def move_elves(elf_dict, max_rounds):
+    # im not really sure how to abstract elf planning priorities into n-dimensions, so it will stay 2d for now.   :(
     priorities = [
         [(-1, -1), (-1, 0), (-1, 1)],
         [(1, -1), (1, 0), (1, 1)],
@@ -19,7 +20,7 @@ def move_elves(elf_dict, max_rounds):
     elf_locs = set(elves.values())
     elf_plans = dict()
     rounds = 0
-    # no do while loop in Python
+    # no do while loop in Python. We must suffer
     while True:
         rounds += 1
         for id, loc in elves.items():
@@ -30,9 +31,8 @@ def move_elves(elf_dict, max_rounds):
                 # apply the translations given by priority to find the locations that must be free for the elf to plan
                 # on moving in that direction:
                 priority_neighbors = [tuple(loc[i] + p[i] for i in range(len(loc))) for p in priority]
-                can_move = all(pn not in elf_locs for pn in priority_neighbors)
-                if  can_move:
-                    # find the square that we should move to.
+                if all(pn not in elf_locs for pn in priority_neighbors):
+                    # find the square that we plan to move to.
                     move_square = tuple(sum(row) // len(row) for row in list(zip(*priority_neighbors)))
                     elf_plans[move_square] = [id] if move_square not in elf_plans else elf_plans[move_square] + [id]
                     break
@@ -44,8 +44,8 @@ def move_elves(elf_dict, max_rounds):
         priorities.append(priorities.pop(0)) # rotate the priority list
         elf_locs = set(elves.values())
         elf_plans = dict()
-    some_elf = list(elf_locs)[0]
-    dims = [(max([loc[i] for loc in elf_locs]) - min([loc[i] for loc in elf_locs])) + 1 for i in range(len(some_elf))]
+    some_loc = list(elf_locs)[0]
+    dims = [(max([loc[i] for loc in elf_locs]) - min([loc[i] for loc in elf_locs])) + 1 for i in range(len(some_loc))]
     return reduce(lambda a, b: a * b, dims) - len(elves), rounds
 
 
